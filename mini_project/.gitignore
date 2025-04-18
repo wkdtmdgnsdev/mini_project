@@ -1,0 +1,23 @@
+# STS / Eclipse
+.settings/
+.project
+.classpath
+
+# Build output
+/bin/
+/build/
+/target/
+
+# IDEs
+*.iml
+.idea/
+*.iws
+
+
+# Logs
+*.log
+
+# Maven
+/logs/
+*.war
+*.ear
