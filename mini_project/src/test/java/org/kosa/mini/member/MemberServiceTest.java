@@ -1,8 +1,11 @@
 package org.kosa.mini.member;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+
+import java.util.Arrays;
+import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -95,23 +98,16 @@ public class MemberServiceTest {
 	}
 	
 	@Test
-    public void 관리자_잠금_해제() throws MemberLockedException {
-        // given
-        String userid = "lockedUser";
-        Member dbMember = new Member();
-        dbMember.setUserid(userid);
-        dbMember.isUserLock(true);  // 계정 잠김 상태
+	public void 관리자_잠금_해제() throws MemberLockedException {
+		// given
+	    List<String> userIds = Arrays.asList("lockedUser1", "lockedUser2", "lockedUser3");
 
-        // mock: memberDAO에서 해당 사용자가 있을 때 dbMember 반환
-        when(memberDAO.findByUserid(userid)).thenReturn(dbMember);
+	    // when
+	    memberService.unlockMemberByAdmin(userIds);
 
-        // when
-        memberService.unlockMemberByAdmin(userid);
-
-        // then
-        assertFalse("계정이 잠금 해제되어야 한다.", dbMember.isUser_lock());
-
-        // memberDAO의 updateMember 메서드가 호출되었는지 확인
-        verify(memberDAO).unlockMemberByAdmin(dbMember);
-    }
+	    // then: 각 아이디에 대해 unlockMemberByAdmin이 호출되었는지 검증
+	    for (String userId : userIds) {
+	        verify(memberDAO).unlockMemberByAdmin(userId);
+	    }
+	}
 }
