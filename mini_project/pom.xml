@@ -172,7 +172,16 @@
 			<version>4.7</version>
 			<scope>test</scope>
 		</dependency>        
+		
+	<dependency>
+	    <groupId>org.mockito</groupId>
+	    <artifactId>mockito-core</artifactId>
+	    <version>2.28.2</version> <!-- 최신 버전 사용 (JUnit 4.x와 호환) -->
+	    <scope>test</scope>
+	</dependency>
+		
 	</dependencies>
+	
     <build>
         <plugins>
             <plugin>
