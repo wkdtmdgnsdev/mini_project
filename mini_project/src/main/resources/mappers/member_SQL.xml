@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.kosa.mini.member.MemberDAO">
+	<select id="findByUserid" resultType="org.kosa.mini.member.Member">
+		select * from m_member where userid = #{userid}
+	</select>
+	
+	<update id="updateLoginFailCount">
+		UPDATE M_MEMBER SET
+		login_fail = #{failCount}
+		WHERE userid = #{userid}
+	</update>
+	
+	<update id="lockMember">
+		UPDATE M_MEMBER SET
+		USER_LOCK  = 1
+		WHERE userid = #{userid}
+	</update>
+</mapper>
