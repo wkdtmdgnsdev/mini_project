@@ -85,7 +85,7 @@ public class MemberServiceTest {
 	    String userid = "lockedUser";
 	    String passwd = "1234";
 	    Member dbMember = Member.login(userid, passwd);
-	    dbMember.setLocked(true);  // 계정 잠금 처리
+	    dbMember.isUserLock(true);  // 계정 잠금 처리
 
 	    // DB에서 해당 사용자를 찾을 때 dbMember 반환
 	    when(memberDAO.findByUserid(userid)).thenReturn(dbMember);

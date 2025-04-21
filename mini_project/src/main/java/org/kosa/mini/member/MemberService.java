@@ -21,6 +21,10 @@ public class MemberService {
 		if(dbMember == null)
 			  throw new LoginFailedException("아이디 또는 비밀번호가 틀렸습니다.");
 		
+		if(dbMember.isUser_lock()) {
+			throw new MemberLockedException("계정이 잠겨있습니다.");
+		}
+		
 		if(!dbMember.matchPassword(passwd)) {
 			addLoginFailCount(dbMember);
 			throw new LoginFailedException("아이디 또는 비밀번호가 틀렸습니다.");
@@ -30,9 +34,12 @@ public class MemberService {
 	private void addLoginFailCount(Member dbMember) {
 		dbMember.addLoginFail();
 		memberDAO.updateLoginFailCount(dbMember.getUserid(), dbMember.getLogin_fail());
-		
+		lockMember(dbMember);
+	}
+
+	private void lockMember(Member dbMember) {
 		if(dbMember.isLimit()) {
-			dbMember.setUser_lock(true);
+			dbMember.isUserLock(true);
 			memberDAO.lockMember(dbMember.getUserid());
 			throw new MemberLockedException("5회 실패, 계정 잠금");
 		}

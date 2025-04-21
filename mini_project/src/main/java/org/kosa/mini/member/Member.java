@@ -40,4 +40,8 @@ public class Member {
 	public boolean isLimit() {
         return this.login_fail == 5;
     }
+	
+	public void isUserLock(boolean user_lock) {
+        this.user_lock = user_lock;
+    }
 }
