@@ -32,5 +32,12 @@ public class Member {
 		this.passwd = passwd;
 	}
 	
+	public void addLoginFail() {
+		this.login_fail++;
+	}
 	
+	
+	public boolean isLimit() {
+        return this.login_fail == 5;
+    }
 }

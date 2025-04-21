@@ -1,11 +1,13 @@
 package org.kosa.mini.member;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.kosa.mini.exception.LoginFailedException;
+import org.kosa.mini.exception.MemberLockedException;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
@@ -63,7 +65,7 @@ public class MemberServiceTest {
 	    String userid = "testuser";
 	    String passwd = "wrongpass";
 	    Member dbMember = Member.login(userid, "1234");
-	    dbMember.setLoginFailCount(4);  // 로그인 실패 횟수 설정
+	    dbMember.setLogin_fail(4);  // 로그인 실패 횟수 설정
 
 	    // DB에서 해당 사용자를 찾을 때 dbMember 반환
 	    when(memberDAO.findByUserid(userid)).thenReturn(dbMember);

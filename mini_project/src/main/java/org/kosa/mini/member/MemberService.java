@@ -22,16 +22,19 @@ public class MemberService {
 			  throw new LoginFailedException("아이디 또는 비밀번호가 틀렸습니다.");
 		
 		if(!dbMember.matchPassword(passwd)) {
-			dbMember.setLogin_fail(dbMember.getLogin_fail() +1);
-			memberDAO.updateLoginFailCount(dbMember.getUserid(), dbMember.getLogin_fail());
-			
-			if(dbMember.getLogin_fail() == 5) {
-				dbMember.setUser_lock(true);
-				memberDAO.lockMember(dbMember.getUserid());
-				throw new MemberLockedException("5회 실패, 계정 잠금");
-			}
-			
+			addLoginFailCount(dbMember);
 			throw new LoginFailedException("아이디 또는 비밀번호가 틀렸습니다.");
+		}
+	}
+
+	private void addLoginFailCount(Member dbMember) {
+		dbMember.addLoginFail();
+		memberDAO.updateLoginFailCount(dbMember.getUserid(), dbMember.getLogin_fail());
+		
+		if(dbMember.isLimit()) {
+			dbMember.setUser_lock(true);
+			memberDAO.lockMember(dbMember.getUserid());
+			throw new MemberLockedException("5회 실패, 계정 잠금");
 		}
 	}
 
