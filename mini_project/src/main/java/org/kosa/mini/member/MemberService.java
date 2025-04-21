@@ -1,5 +1,7 @@
 package org.kosa.mini.member;
 
+import java.util.List;
+
 import org.kosa.mini.exception.LoginFailedException;
 import org.kosa.mini.exception.MemberLockedException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +44,12 @@ public class MemberService {
 			dbMember.isUserLock(true);
 			memberDAO.lockMember(dbMember.getUserid());
 			throw new MemberLockedException("5회 실패, 계정 잠금");
+		}
+	}
+
+	public void unlockMemberByAdmin(List<String> userids) {
+		for(String userid : userids) {
+			memberDAO.unlockMemberByAdmin(userid);
 		}
 	}
 
