@@ -44,4 +44,8 @@ public class Member {
 	public void isUserLock(boolean user_lock) {
         this.user_lock = user_lock;
     }
+	
+	public boolean validateLogin() {
+		 return userid != null && !userid.isEmpty() && passwd != null && !passwd.isEmpty();
+	}
 }
