@@ -20,4 +20,10 @@
 		USER_LOCK  = 1
 		WHERE userid = #{userid}
 	</update>
+	
+	<update id="unlockMemberByAdmin">
+		UPDATE M_MEMBER SET
+		USER_LOCK  = 0
+		WHERE userid = #{userid}
+	</update>
 </mapper>
