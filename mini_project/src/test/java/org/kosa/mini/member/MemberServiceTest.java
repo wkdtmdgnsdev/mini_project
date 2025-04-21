@@ -5,6 +5,7 @@ import static org.mockito.Mockito.when;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.kosa.mini.exception.LoginFailedException;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
@@ -23,13 +24,9 @@ public class MemberServiceTest {
 		 String userid = "testuser";
         String passwd = "1234";
 
-        Member request = new Member();
-        request.setUserid(userid);
-        request.setPasswd(passwd);
+        Member request = Member.login(userid, passwd);
 
-        Member dbMember = new Member();
-        dbMember.setUserid(userid);
-        dbMember.setPasswd(passwd);
+        Member dbMember = Member.login(userid, passwd);
 
         //  Stub(스텁) 방식
         // MemberDAO.findByUserid(userid) 를 호출하면,
@@ -38,19 +35,19 @@ public class MemberServiceTest {
         // Mockito가 대신 dbMember 객체를 반환
         when(memberDAO.findByUserid(userid)).thenReturn(dbMember);
 
-        Member result = memberService.login(request);
+        Member result = memberService.login(userid, passwd);
 
         assertEquals(userid, result.getUserid());
 	}
 	
 	@Test(expected = LoginFailedException.class)
 	public void 로그인_실패_비밀번호_틀림() {
-	    Member request = new Member("testuser", "wrongpass");
-	    Member dbMember = new Member("testuser", "1234");
+	    Member request = Member.login("testuser", "wrongpass");
+	    Member dbMember = Member.login("testuser", "1234");
 
 	    when(memberDAO.findByUserid("testuser")).thenReturn(dbMember);
 
-	    memberService.login(request);
+	    memberService.login(request.getUserid(), request.getPasswd());
 	}
 
 	@Test(expected = LoginFailedException.class)
