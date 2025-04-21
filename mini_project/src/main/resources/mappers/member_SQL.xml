@@ -11,7 +11,7 @@
 	
 	<update id="updateLoginFailCount">
 		UPDATE M_MEMBER SET
-		login_fail = #{failCount}
+		login_fail = #{login_fail}
 		WHERE userid = #{userid}
 	</update>
 	

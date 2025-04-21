@@ -52,6 +52,7 @@ public class MemberController {
 	    } catch (MemberLockedException e) {
 	        return setErrorResponse(result, e.getMessage());
 	    } catch (Exception e) {
+	    	e.printStackTrace();
 	        return setErrorResponse(result, "알 수 없는 오류가 발생했습니다");
 	    }
 
