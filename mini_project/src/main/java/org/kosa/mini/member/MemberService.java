@@ -17,6 +17,9 @@ public class MemberService {
 	}
 
 	private void validateLogin(Member dbMember, String passwd) {
+		if(dbMember == null)
+			  throw new LoginFailedException("아이디 또는 비밀번호가 틀렸습니다.");
+		
 		if(!dbMember.matchPassword(passwd))
 			  throw new LoginFailedException("아이디 또는 비밀번호가 틀렸습니다.");
 	}
