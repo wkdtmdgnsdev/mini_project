@@ -40,48 +40,9 @@
         </div>
     </div>
 </div>
-
     <!-- 부트스트랩 JS 및 Popper.js 추가 -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
-    <script type="text/javascript">
-		const loginForm = document.querySelector("#loginForm");
-		
-		if (loginForm) {
-	 		loginForm.addEventListener("submit", e => {
-				e.preventDefault();
-
-				const param = {
-					userid : userid.value,   	
-					passwd : passwd.value   	
-				}
-				
-				fetch("login", { 
-					  method: 'post', 
-					  headers: {
-					    'Content-Type': 'application/json;charset=utf-8'
-					  },
-					  body: JSON.stringify(param)
-					})
-					  .then(response => response.json())
-					  .then(json => {
-						  if (json.status == "error") {
-							  const errorMessage = document.querySelector("#errorMessage");
-                              errorMessage.style.display = "block";
-                              errorMessage.textContent = json.errorMessage;
-                              
-							  userid.value = "";
-							  passwd.value = "";
-							  userid.focus();
-						  } else {
-							  location = "${pageContext.request.contextPath}/";
-						  }
-				})	 			
-
-					  
-		//		registerForm.submit();
-	 		})
-	 	}
-    </script>
+    <script src="${pageContext.request.contextPath}/resources/js/login.js"></script>
 </body>
 </html>
