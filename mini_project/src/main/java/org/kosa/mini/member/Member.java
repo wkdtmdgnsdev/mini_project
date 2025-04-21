@@ -17,4 +17,20 @@ public class Member {
 	private int login_fail;
 	private boolean user_lock;
 	private boolean is_admin;
+	
+	public boolean matchPassword(String password) {
+        return this.passwd.equals(password);
+    }
+	
+	 public static Member login(String userid, String passwd) {
+	        return new Member(userid, passwd);
+	  }
+
+	public Member(String userid, String passwd) {
+		super();
+		this.userid = userid;
+		this.passwd = passwd;
+	}
+	
+	
 }
