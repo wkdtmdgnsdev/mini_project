@@ -41,5 +41,50 @@ public class MemberServiceTest {
 
         assertEquals(userid, result.getUserid());
 	}
+	
+	@Test(expected = LoginFailedException.class)
+	public void 로그인_실패_비밀번호_틀림() {
+	    Member request = new Member("testuser", "wrongpass");
+	    Member dbMember = new Member("testuser", "1234");
 
+	    when(memberDAO.findByUserid("testuser")).thenReturn(dbMember);
+
+	    memberService.login(request);
+	}
+
+	@Test(expected = LoginFailedException.class)
+	public void 로그인_실패_존재하지_않는_아이디() {
+	    when(memberDAO.findByUserid("no_user")).thenReturn(null);
+
+	    memberService.login(new Member("no_user", "1234"));
+	}
+
+
+	@Test(expected = MemberLockedException.class)
+	public void 로그인_5회_실패_시_잠금처리() {
+	    Member request = new Member("testuser", "wrongpass");
+	    Member dbMember = new Member("testuser", "1234");
+	    dbMember.setLoginFailCount(4);
+	
+	    when(memberDAO.findByUserid("testuser")).thenReturn(dbMember);
+	
+	    try {
+	        memberService.login(request);
+	    } finally {
+	        verify(memberDAO).updateLoginFailCount("testuser", 5);
+	        verify(memberDAO).lockMember("testuser");
+	    }
+	}
+	
+	@Test(expected = MemberLockedException.class)
+	public void 로그인_실패_잠긴_계정() {
+	    Member request = new Member("lockedUser", "1234");
+	    Member dbMember = new Member("lockedUser", "1234");
+	    dbMember.setLocked(true);
+	
+	    when(memberDAO.findByUserid("lockedUser")).thenReturn(dbMember);
+	
+	    memberService.login(request);
+	}
+	
 }
