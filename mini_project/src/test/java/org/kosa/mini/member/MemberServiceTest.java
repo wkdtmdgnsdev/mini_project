@@ -54,35 +54,42 @@ public class MemberServiceTest {
 	public void 로그인_실패_존재하지_않는_아이디() {
 	    when(memberDAO.findByUserid("no_user")).thenReturn(null);
 
-	    memberService.login(new Member("no_user", "1234"));
+	    memberService.login("no_user", "1234");
 	}
 
 
 	@Test(expected = MemberLockedException.class)
 	public void 로그인_5회_실패_시_잠금처리() {
-	    Member request = new Member("testuser", "wrongpass");
-	    Member dbMember = new Member("testuser", "1234");
-	    dbMember.setLoginFailCount(4);
-	
-	    when(memberDAO.findByUserid("testuser")).thenReturn(dbMember);
-	
+	    String userid = "testuser";
+	    String passwd = "wrongpass";
+	    Member dbMember = Member.login(userid, "1234");
+	    dbMember.setLoginFailCount(4);  // 로그인 실패 횟수 설정
+
+	    // DB에서 해당 사용자를 찾을 때 dbMember 반환
+	    when(memberDAO.findByUserid(userid)).thenReturn(dbMember);
+
 	    try {
-	        memberService.login(request);
+	        // 로그인 시 userid와 passwd를 전달
+	        memberService.login(userid, passwd);
 	    } finally {
-	        verify(memberDAO).updateLoginFailCount("testuser", 5);
-	        verify(memberDAO).lockMember("testuser");
+	        // 로그인 실패 횟수와 계정 잠금 처리 검증
+	        verify(memberDAO).updateLoginFailCount(userid, 5);
+	        verify(memberDAO).lockMember(userid);
 	    }
 	}
-	
+
 	@Test(expected = MemberLockedException.class)
 	public void 로그인_실패_잠긴_계정() {
-	    Member request = new Member("lockedUser", "1234");
-	    Member dbMember = new Member("lockedUser", "1234");
-	    dbMember.setLocked(true);
-	
-	    when(memberDAO.findByUserid("lockedUser")).thenReturn(dbMember);
-	
-	    memberService.login(request);
+	    String userid = "lockedUser";
+	    String passwd = "1234";
+	    Member dbMember = Member.login(userid, passwd);
+	    dbMember.setLocked(true);  // 계정 잠금 처리
+
+	    // DB에서 해당 사용자를 찾을 때 dbMember 반환
+	    when(memberDAO.findByUserid(userid)).thenReturn(dbMember);
+
+	    // 잠긴 계정으로 로그인 시도 시 예외 발생
+	    memberService.login(userid, passwd);
 	}
 	
 }
