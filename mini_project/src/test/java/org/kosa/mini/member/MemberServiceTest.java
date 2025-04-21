@@ -94,4 +94,24 @@ public class MemberServiceTest {
 	    memberService.login(userid, passwd);
 	}
 	
+	@Test
+    public void 관리자_잠금_해제() throws MemberLockedException {
+        // given
+        String userid = "lockedUser";
+        Member dbMember = new Member();
+        dbMember.setUserid(userid);
+        dbMember.isUserLock(true);  // 계정 잠김 상태
+
+        // mock: memberDAO에서 해당 사용자가 있을 때 dbMember 반환
+        when(memberDAO.findByUserid(userid)).thenReturn(dbMember);
+
+        // when
+        memberService.unlockMemberByAdmin(userid);
+
+        // then
+        assertFalse("계정이 잠금 해제되어야 한다.", dbMember.isUser_lock());
+
+        // memberDAO의 updateMember 메서드가 호출되었는지 확인
+        verify(memberDAO).unlockMemberByAdmin(dbMember);
+    }
 }
