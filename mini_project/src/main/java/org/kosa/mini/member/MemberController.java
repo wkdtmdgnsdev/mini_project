@@ -9,6 +9,7 @@ import org.kosa.mini.exception.LoginFailedException;
 import org.kosa.mini.exception.MemberLockedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -96,6 +97,15 @@ public class MemberController {
 		return map;
 	}
 	
-	
-
+	@RequestMapping("detail")
+	public String detailView(Model model, String userid) {
+		Member memberInfo = memberService.findByUserid(userid);
+		if (memberInfo == null) {
+			return "redirect:/";
+		}
+		
+		model.addAttribute("memberInfo", memberInfo);
+		
+		return "member/detail";
+	}
 }

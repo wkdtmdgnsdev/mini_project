@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -12,31 +15,18 @@
         <h2 class="text-center">회원 상세 정보</h2>
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">회원번호: <span id="memberId" name="memberId">1</span></h5>
                 <ul class="list-group">
                     <li class="list-group-item">
                         <strong>아이디:</strong> 
-                        <span id="userid" name="userid">user01</span>
+                        <span id="userid" name="userid">${member.userid }</span>
                     </li>
                     <li class="list-group-item">
                         <strong>이름:</strong> 
-                        <span id="name" name="name">홍길동</span>
+                        <span id="name" name="name">${member.name }</span>
                     </li>
                     <li class="list-group-item">
-                        <strong>취미:</strong> 
-                        <span id="hobby" name="hobby">자전거 타기</span>
-                    </li>
-                    <li class="list-group-item">
-                        <strong>전화번호:</strong> 
-                        <span id="phone" name="phone">010-1234-5678</span>
-                    </li>
-                    <li class="list-group-item">
-                        <strong>주소:</strong> 
-                        <span id="address" name="address">서울특별시 강남구</span>
-                    </li>
-                    <li class="list-group-item">
-                        <strong>가입일자:</strong> 
-                        <span id="joinDate" name="joinDate">2024-01-01</span>
+                        <strong>나이:</strong> 
+                        <span id="age" name="age">${member.age }</span>
                     </li>
                 </ul>
                 <div class="d-flex justify-content-between mt-3">

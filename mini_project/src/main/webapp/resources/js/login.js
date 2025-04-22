@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
 							  passwd.value = "";
 							  userid.focus();
 						  } else {
-							  location = "${pageContext.request.contextPath}/";
+							  location = "/mini/";
 						  }
 				})	 			
 
