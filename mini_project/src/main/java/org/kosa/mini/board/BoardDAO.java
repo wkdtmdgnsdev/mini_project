@@ -12,5 +12,6 @@ public interface BoardDAO {
 	public int insert(Board board);
 	public Board selectOne(@Param("bno") String bno);
 	public int update(Board board);
+	public int updateViewCount(@Param("bno") String bno);
 
 }

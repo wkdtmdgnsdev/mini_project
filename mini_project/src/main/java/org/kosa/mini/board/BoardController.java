@@ -39,6 +39,7 @@ public class BoardController {
 	@RequestMapping("detail")
 	public String detail(String bno, Model model) {
 		Board board = boardService.readBoard(bno);
+		boardService.addViewCount(bno);
 		model.addAttribute("board", board);
 		
 		return "board/detail";

@@ -38,5 +38,10 @@ public class BoardService {
 		int result = boardDAO.update(board);
 		return result;
 	}
+	
+	public int addViewCount(String bno) {
+		int result = boardDAO.updateViewCount(bno);
+		return result;
+	}
 
 }

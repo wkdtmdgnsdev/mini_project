@@ -56,4 +56,10 @@
 			WRITER = #{writer}, PASSWD = #{passwd}
 		WHERE BNO = #{bno}
 	</update>
+	
+	<update id="updateViewCount">
+		UPDATE M_BOARD SET
+		view_count = view_count+1
+		WHERE bno = #{bno}
+	</update>
 </mapper>
