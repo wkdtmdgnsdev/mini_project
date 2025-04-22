@@ -11,4 +11,5 @@ public interface MemberDAO {
 	public void unlockMemberByAdmin(String userid);
 	public int insert(Member member);
 	public int update(Member member);
+	public int delete(@Param("userid") String userid);
 }

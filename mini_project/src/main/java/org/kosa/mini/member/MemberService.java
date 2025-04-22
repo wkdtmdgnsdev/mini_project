@@ -66,4 +66,9 @@ public class MemberService {
 		return member;
 	}
 
+	public int delete(String userid) {
+		int result = memberDAO.delete(userid);
+		return result;
+	}
+
 }

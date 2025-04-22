@@ -139,4 +139,13 @@ public class MemberController {
 		
 		return "redirect:/member/detail?userid=" +memberInfo.getUserid();
 	}
+	
+	@RequestMapping("delete")
+	public String delete(HttpSession session, Model model) {
+		Member member = (Member) session.getAttribute("member");
+		memberService.delete(member.getUserid());
+		session.invalidate();
+		
+		return "redirect:/";
+	}
 }

@@ -38,4 +38,9 @@
 		passwd = #{passwd}, name = #{name}, age = #{age}
 		WHERE userid = #{userid}
 	</update>
+	
+	<delete id="delete">
+		delete from m_member
+		where userid = #{userid}
+	</delete>
 </mapper>
