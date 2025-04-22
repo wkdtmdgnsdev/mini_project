@@ -9,4 +9,5 @@ public interface MemberDAO {
 	public void updateLoginFailCount(@Param("userid") String userid, @Param("login_fail") int login_fail);
 	public void lockMember(String userid);
 	public void unlockMemberByAdmin(String userid);
+	public int insert(Member member);
 }

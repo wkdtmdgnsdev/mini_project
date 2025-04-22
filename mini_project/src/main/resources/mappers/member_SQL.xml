@@ -26,4 +26,10 @@
 		USER_LOCK  = 0
 		WHERE userid = #{userid}
 	</update>
+	
+	<insert id="insert">
+		INSERT INTO M_MEMBER VALUES(
+		#{userid}, #{passwd}, #{name}, 
+		#{age}, DEFAULT, DEFAULT, DEFAULT)
+	</insert>
 </mapper>

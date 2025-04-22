@@ -10,7 +10,7 @@
 <body>
 <ul>
 	<li><a href="member/loginForm">로그인</a></li>
-	<li><a href="member/register">회원가입</a></li>
+	<li><a href="member/registerForm">회원가입</a></li>
 	<li><a href="member/detail">회원상세보기</a></li>
 	<li><a href="member/list">회원목록</a></li>
 	<li><a href="member/update">회원정보수정</a></li>

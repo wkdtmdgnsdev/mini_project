@@ -48,4 +48,23 @@ public class Member {
 	public boolean validateLogin() {
 		 return userid != null && !userid.isEmpty() && passwd != null && !passwd.isEmpty();
 	}
+
+	public Member(String userid, String passwd, String name, int age) {
+		super();
+		this.userid = userid;
+		this.passwd = passwd;
+		this.name = name;
+		this.age = age;
+	}
+	
+	public static Member join(String userid, String passwd, String name, int age) {
+        return new Member(userid, passwd, name, age);
+  }
+
+	public boolean isValid() {
+		if (userid == null || userid.length() == 0) return false;
+		if (passwd == null || passwd.length() == 0) return false;
+		if (name == null || name.length() == 0) return false;
+		return true;
+	}
 }

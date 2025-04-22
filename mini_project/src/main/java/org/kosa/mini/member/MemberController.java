@@ -65,4 +65,25 @@ public class MemberController {
 	    result.put("status", "error");
 	    return result;
 	}
+	
+	@RequestMapping("registerForm")
+	public String registerForm() {
+		return "member/registerForm";
+	}
+	
+	@PostMapping("register")
+	@ResponseBody
+	public Map<String, Object> register(@RequestBody Member member) {
+		Map<String, Object> result = new HashMap<String, Object>();
+		System.out.println(member);
+		//입력값 검증 
+		if (!member.isValid()) {
+			return setErrorResponse(result, "입력값 검증 오류가 발생 했습니다.");
+		} else {
+			memberService.register(member);
+			result.put("status", "ok");
+		}
+		return result;
+	}
+
 }

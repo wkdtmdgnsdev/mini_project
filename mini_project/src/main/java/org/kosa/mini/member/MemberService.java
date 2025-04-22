@@ -53,4 +53,8 @@ public class MemberService {
 		}
 	}
 
+	public int register(Member member) {
+		return memberDAO.insert(member);
+	}
+
 }
