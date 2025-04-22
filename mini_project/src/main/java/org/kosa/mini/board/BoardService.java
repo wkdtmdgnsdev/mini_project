@@ -25,4 +25,8 @@ public class BoardService {
 				, size); 
 	}
 
+	public void writer(Board board) {
+		boardDAO.insert(board);
+	}
+
 }

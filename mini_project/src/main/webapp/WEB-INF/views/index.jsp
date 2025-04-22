@@ -17,7 +17,7 @@
 	<li><a href="board/list">게시물 목록</a></li>
 	<li><a href="board/detail">게시물 상세보기</a></li>
 	<li><a href="board/update">게시물 수정</a></li>
-	<li><a href="board/register">게시물 등록</a></li>
+	<li><a href="board/registerForm">게시물 등록</a></li>
 </ul>
 </body>
 </html>

@@ -25,7 +25,7 @@
 		    		view_count
 		        FROM m_board
 		        <include refid="search"/>
-		        ORDER BY bno
+		        ORDER BY bno desc
 		    ) e
 		    WHERE rownum BETWEEN 1 AND #{end}
 		) o
@@ -37,4 +37,11 @@
 		from m_board
 		<include refid="search"/>
 	</select>
+	
+	<insert id="insert">
+		INSERT INTO M_board VALUES(
+			DEFAULT, #{title}, #{content},
+			#{writer}, #{passwd}, DEFAULT, DEFAULT
+    	)
+	</insert>
 </mapper>
