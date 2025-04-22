@@ -68,4 +68,11 @@ public class BoardController {
 		
 		return "redirect:/board/detail?bno="+board.getBno();
 	}
+	
+	@RequestMapping("delete")
+	public String delete(String bno) {
+		int result = boardService.delete(bno);
+		
+		return "redirect:/board/list";
+	}
 }

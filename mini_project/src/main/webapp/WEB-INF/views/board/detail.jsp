@@ -43,6 +43,7 @@
             <div class="card-footer text-end">
                 <!-- 수정, 삭제 버튼(수정 버튼은 게시물 번호와 함께 전달) -->
                 <a href="updateForm?bno=${board.bno}" class="btn btn-warning">수정</a>
+                <a href="delete?bno=${board.bno}" class="btn btn-warning">삭제</a>
                 <a href="list" class="btn btn-secondary">목록으로 돌아가기</a>
             </div>
         </div>

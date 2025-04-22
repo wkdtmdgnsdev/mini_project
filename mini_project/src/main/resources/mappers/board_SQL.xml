@@ -62,4 +62,9 @@
 		view_count = view_count+1
 		WHERE bno = #{bno}
 	</update>
+	
+	<delete id="delete">
+		DELETE m_board
+		WHERE bno = #{bno}
+	</delete>
 </mapper>

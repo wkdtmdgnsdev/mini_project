@@ -44,4 +44,9 @@ public class BoardService {
 		return result;
 	}
 
+	public int delete(String bno) {
+		int result = boardDAO.delete(bno);
+		return result;
+	}
+
 }

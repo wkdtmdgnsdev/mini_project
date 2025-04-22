@@ -13,5 +13,6 @@ public interface BoardDAO {
 	public Board selectOne(@Param("bno") String bno);
 	public int update(Board board);
 	public int updateViewCount(@Param("bno") String bno);
+	public int delete(@Param("bno") String bno);
 
 }
