@@ -108,4 +108,35 @@ public class MemberController {
 		
 		return "member/detail";
 	}
+	
+	@RequestMapping("updateForm")
+	public String updateForm(HttpSession session, Model model) {
+		//세션에서 멤버 정보를 얻는다 -> 목적 : userid를 얻는다 
+		Member member = (Member) session.getAttribute("member");
+		if (member == null) {
+			return "redirect:/";
+		}
+		
+		//멤버 userid를 이용하여 멤버의 상세정보를 얻는다
+		Member memberInfo = memberService.findByUserid(member.getUserid());
+		if (memberInfo == null) {
+			return "redirect:/";
+		}
+		
+		model.addAttribute("memberInfo", memberInfo);
+		
+		return "member/updateForm";
+	}
+	
+	@RequestMapping("update")
+	public String update(HttpSession session, Model model, Member member) {
+		Member memberInfo = memberService.update(member);
+		if (memberInfo == null) {
+			return "redirect:/";
+		}
+		session.setAttribute("member", memberInfo);
+		model.addAttribute("memberInfo", memberInfo);
+		
+		return "redirect:/member/detail?userid=" +memberInfo.getUserid();
+	}
 }

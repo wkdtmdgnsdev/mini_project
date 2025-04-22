@@ -61,4 +61,9 @@ public class MemberService {
 		return memberDAO.findByUserid(userid);
 	}
 
+	public Member update(Member member) {
+		memberDAO.update(member);
+		return member;
+	}
+
 }

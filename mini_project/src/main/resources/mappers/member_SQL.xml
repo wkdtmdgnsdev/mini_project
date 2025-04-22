@@ -32,4 +32,10 @@
 		#{userid}, #{passwd}, #{name}, 
 		#{age}, DEFAULT, DEFAULT, DEFAULT)
 	</insert>
+	
+	<update id="update">
+		UPDATE M_MEMBER SET
+		passwd = #{passwd}, name = #{name}, age = #{age}
+		WHERE userid = #{userid}
+	</update>
 </mapper>
