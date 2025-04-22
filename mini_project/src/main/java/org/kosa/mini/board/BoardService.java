@@ -34,4 +34,9 @@ public class BoardService {
 		return board;
 	}
 
+	public int modifyBoard(Board board) {
+		int result = boardDAO.update(board);
+		return result;
+	}
+
 }

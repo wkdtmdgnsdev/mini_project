@@ -49,4 +49,11 @@
 		SELECT * FROM m_board
 		WHERE bno = #{bno}
 	</select>
+	
+	<update id="update">
+		UPDATE m_board SET
+			title = #{title}, content = #{content},
+			WRITER = #{writer}, PASSWD = #{passwd}
+		WHERE BNO = #{bno}
+	</update>
 </mapper>

@@ -43,4 +43,20 @@ public class BoardController {
 		
 		return "board/detail";
 	}
+	
+	@RequestMapping("updateForm")
+	public String updateForm(String bno, Model model) {
+		Board board = boardService.readBoard(bno);
+		model.addAttribute("board", board);
+		
+		return "board/updateForm";
+	}
+	
+	@RequestMapping("update")
+	public String update(Board board, Model model) {
+		int result = boardService.modifyBoard(board);
+		model.addAttribute("board", board);
+		
+		return "board/detail";
+	}
 }

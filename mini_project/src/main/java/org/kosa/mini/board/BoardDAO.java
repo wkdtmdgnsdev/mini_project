@@ -11,5 +11,6 @@ public interface BoardDAO {
 	public int getTotalCount(Map<String, Object> map);
 	public int insert(Board board);
 	public Board selectOne(@Param("bno") String bno);
+	public int update(Board board);
 
 }
