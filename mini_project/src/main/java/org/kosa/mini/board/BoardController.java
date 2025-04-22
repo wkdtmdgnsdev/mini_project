@@ -1,5 +1,7 @@
 package org.kosa.mini.board;
 
+import javax.servlet.http.HttpSession;
+
 import org.kosa.mini.util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,9 +39,15 @@ public class BoardController {
 	}
 	
 	@RequestMapping("detail")
-	public String detail(String bno, Model model) {
+	public String detail(String bno, Model model, HttpSession session) {
+		// null일수 있어서 null값을 가질수 있는 Wrapper Class 사용
+		Boolean noViewCount = (Boolean)session.getAttribute("noViewCount");
+		if(noViewCount == null || !noViewCount ) {
+			boardService.addViewCount(bno);
+		}
+		session.setAttribute("noViewCount", false);
+		
 		Board board = boardService.readBoard(bno);
-		boardService.addViewCount(bno);
 		model.addAttribute("board", board);
 		
 		return "board/detail";
@@ -54,10 +62,10 @@ public class BoardController {
 	}
 	
 	@RequestMapping("update")
-	public String update(Board board, Model model) {
+	public String update(Board board, HttpSession session) {
 		int result = boardService.modifyBoard(board);
-		model.addAttribute("board", board);
+		session.setAttribute("noViewCount", true);
 		
-		return "board/detail";
+		return "redirect:/board/detail?bno="+board.getBno();
 	}
 }
