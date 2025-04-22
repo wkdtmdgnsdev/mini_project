@@ -147,7 +147,7 @@
                 </ul>
                 <div class="d-flex">
                     <a href="/mini/member/updateForm" class="btn btn-primary">회원 정보 수정</a>
-                    <a href="/mini/member/unLock" class="btn btn-primary">잠금해제</a>
+                    <a href="/mini/member/unLock?userid=${member.userid }" class="btn btn-primary">잠금해제</a>
                     <a href="/mini/member/delete" class="btn btn-primary">탈퇴</a>
                     <a href="list.html" class="btn btn-secondary">회원 목록으로 돌아가기</a>
                 </div>

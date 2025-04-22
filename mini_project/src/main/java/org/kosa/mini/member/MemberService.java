@@ -50,10 +50,8 @@ public class MemberService {
 		}
 	}
 
-	public void unlockMemberByAdmin(List<String> userids) {
-		for(String userid : userids) {
-			memberDAO.unlockMemberByAdmin(userid);
-		}
+	public void unlockMemberByAdmin(String userid) {
+		memberDAO.unlockMemberByAdmin(userid);
 	}
 
 	public int register(Member member) {

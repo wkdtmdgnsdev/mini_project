@@ -156,4 +156,11 @@ public class MemberController {
 		
 		return "member/list";
 	}
+	
+	@RequestMapping("unLock")
+	public String unLock(String userid, Model model) {
+		memberService.unlockMemberByAdmin(userid);
+		
+		return "redirect:/member/detail?userid=" +userid;
+	}
 }

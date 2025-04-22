@@ -100,14 +100,12 @@ public class MemberServiceTest {
 	@Test
 	public void 관리자_잠금_해제() throws MemberLockedException {
 		// given
-	    List<String> userIds = Arrays.asList("lockedUser1", "lockedUser2", "lockedUser3");
+	    String userId = "lockedUser1";
 
 	    // when
-	    memberService.unlockMemberByAdmin(userIds);
+	    memberService.unlockMemberByAdmin(userId);
 
 	    // then: 각 아이디에 대해 unlockMemberByAdmin이 호출되었는지 검증
-	    for (String userId : userIds) {
-	        verify(memberDAO).unlockMemberByAdmin(userId);
-	    }
+        verify(memberDAO).unlockMemberByAdmin(userId);
 	}
 }
