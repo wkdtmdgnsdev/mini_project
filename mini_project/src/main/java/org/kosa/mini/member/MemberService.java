@@ -57,4 +57,8 @@ public class MemberService {
 		return memberDAO.insert(member);
 	}
 
+	public Member findByUserid(String userid) {
+		return memberDAO.findByUserid(userid);
+	}
+
 }

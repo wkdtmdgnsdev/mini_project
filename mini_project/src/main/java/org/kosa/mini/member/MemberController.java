@@ -75,7 +75,6 @@ public class MemberController {
 	@ResponseBody
 	public Map<String, Object> register(@RequestBody Member member) {
 		Map<String, Object> result = new HashMap<String, Object>();
-		System.out.println(member);
 		//입력값 검증 
 		if (!member.isValid()) {
 			return setErrorResponse(result, "입력값 검증 오류가 발생 했습니다.");
@@ -85,5 +84,18 @@ public class MemberController {
 		}
 		return result;
 	}
+	
+	@PostMapping("/isExistUserId")
+	@ResponseBody
+	public Map<String, Object> isExistUserId(@RequestBody Member member) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("existUserId", null != 
+				memberService.findByUserid(member.getUserid()));
+		
+		return map;
+	}
+	
+	
 
 }
