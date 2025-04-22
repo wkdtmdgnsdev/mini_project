@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.kosa.mini.exception.LoginFailedException;
 import org.kosa.mini.exception.MemberLockedException;
+import org.kosa.mini.util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -99,12 +100,12 @@ public class MemberController {
 	
 	@RequestMapping("detail")
 	public String detailView(Model model, String userid) {
-		Member memberInfo = memberService.findByUserid(userid);
-		if (memberInfo == null) {
+		Member member = memberService.findByUserid(userid);
+		if (member == null) {
 			return "redirect:/";
 		}
 		
-		model.addAttribute("memberInfo", memberInfo);
+		model.addAttribute("member", member);
 		
 		return "member/detail";
 	}
@@ -147,5 +148,12 @@ public class MemberController {
 		session.invalidate();
 		
 		return "redirect:/";
+	}
+	
+	@RequestMapping("/list")
+	public String list(Model model, String pageNo, String size, String searchValue) {
+		model.addAttribute("pageResponse", memberService.list(searchValue, Util.parseInt(pageNo, 1), Util.parseInt(size, 10)));
+		
+		return "member/list";
 	}
 }

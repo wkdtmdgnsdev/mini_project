@@ -1,9 +1,12 @@
 package org.kosa.mini.member;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.kosa.mini.exception.LoginFailedException;
 import org.kosa.mini.exception.MemberLockedException;
+import org.kosa.mini.page.PageResponseVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -69,6 +72,18 @@ public class MemberService {
 	public int delete(String userid) {
 		int result = memberDAO.delete(userid);
 		return result;
+	}
+
+	public PageResponseVO<Member> list(String searchValue, int pageNo, int size) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("start", (pageNo-1) * size + 1);
+		map.put("end", pageNo * size);
+		map.put("searchValue", searchValue);
+		
+		return new PageResponseVO<Member>(pageNo
+				, memberDAO.list(map)
+				, memberDAO.getTotalCount(map)
+				, size); 
 	}
 
 }
