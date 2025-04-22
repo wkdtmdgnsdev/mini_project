@@ -78,7 +78,7 @@
         <c:forEach items="${pageResponse.list}" var="item" varStatus="status">
             <tr>
                 <td>${item.bno }</td>
-                <td class="text-start"><a href="detailView?bno=${item.bno}" class="text-decoration-none">${item.title}</a></td>
+                <td class="text-start"><a href="detail?bno=${item.bno}" class="text-decoration-none">${item.title}</a></td>
                 <td>${item.writer}</td>
                 <td>${item.reg_date}</td>
                 <td>${item.view_count}</td>

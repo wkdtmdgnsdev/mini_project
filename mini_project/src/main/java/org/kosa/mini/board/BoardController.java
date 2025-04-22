@@ -4,7 +4,6 @@ import org.kosa.mini.util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -35,5 +34,13 @@ public class BoardController {
 		boardService.writer(board);
 		
 		return "redirect:/board/list";
+	}
+	
+	@RequestMapping("detail")
+	public String detail(String bno, Model model) {
+		Board board = boardService.readBoard(bno);
+		model.addAttribute("board", board);
+		
+		return "board/detail";
 	}
 }

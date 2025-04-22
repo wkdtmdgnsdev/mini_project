@@ -44,4 +44,9 @@
 			#{writer}, #{passwd}, DEFAULT, DEFAULT
     	)
 	</insert>
+	
+	<select id="selectOne" resultType="org.kosa.mini.board.Board">
+		SELECT * FROM m_board
+		WHERE bno = #{bno}
+	</select>
 </mapper>

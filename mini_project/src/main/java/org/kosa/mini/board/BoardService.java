@@ -29,4 +29,9 @@ public class BoardService {
 		boardDAO.insert(board);
 	}
 
+	public Board readBoard(String bno) {
+		Board board = boardDAO.selectOne(bno);
+		return board;
+	}
+
 }
