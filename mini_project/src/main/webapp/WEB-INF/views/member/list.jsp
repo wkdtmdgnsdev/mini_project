@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<!-- 부트스트랩 CSS 추가 -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -10,46 +8,171 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원 관리</title>
     <style>
-        /* 커스터마이징된 스타일 */
+        /* 전체적인 스타일 */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f6f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
         .container {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #4a90e2;
+            margin-bottom: 20px;
+        }
+
+        /* 폼 스타일 */
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        label {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        input[type="text"], select {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 14px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #357ab7;
+        }
+
+        /* 테이블 스타일 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
             margin-top: 20px;
         }
-        .form-inline {
-            display: flex;
-            justify-content: space-between;
+
+        table, th, td {
+            border: 1px solid #ddd;
         }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f4f6f9;
+            color: #333;
+        }
+
+        td {
+            background-color: #fff;
+            color: #666;
+        }
+
+        tr:nth-child(even) td {
+            background-color: #f9f9f9;
+        }
+
+        a {
+            color: #4a90e2;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* 페이지 내비게이션 스타일 */
         .pagination {
+            display: flex;
             justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
         }
-        .table th, .table td {
-            vertical-align: middle;
+
+        .pagination a {
+            padding: 8px 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            color: #4a90e2;
+            text-decoration: none;
+        }
+
+        .pagination a:hover {
+            background-color: #f4f6f9;
+        }
+
+        .pagination .active {
+            background-color: #4a90e2;
+            color: white;
+        }
+
+        /* 페이지 정보 스타일 */
+        .page-info {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1 class="text-center my-4">회원 관리</h1>
+        <h1>회원 관리</h1>
 
         <!-- 검색 폼 -->
-        <form name="searchForm" id="searchForm" action="list" method="post" class="form-inline mb-4">
+        <form name="searchForm" id="searchForm" action="list" method="post">
             <input type="hidden" name="pageNo" id="pageNo" value="${pageResponse.pageNo}">
-            <div class="d-flex align-items-center">
-                <label for="size" class="me-2">건수:</label>
-                <select name="size" id="size" class="form-select form-select-sm me-3">
+            <div class="form-group">
+                <label for="size">건수:</label>
+                <select name="size" id="size">
                     <c:forTokens items="10,30,90,100" delims="," var="size">
                         <option value="${size}" ${pageResponse.size == size ? 'selected' : ''}>${size}</option>
                     </c:forTokens>
                 </select>
-                <label for="searchValue" class="me-2">검색어:</label>
-                <input type="text" name="searchValue" id="searchValue" value="${param.searchValue}" class="form-control form-control-sm me-3">
-                <button type="submit" class="btn btn-primary btn-sm">검색</button>
             </div>
+            <div class="form-group">
+                <label for="searchValue">검색어:</label>
+                <input type="text" name="searchValue" id="searchValue" value="${param.searchValue}">
+            </div>
+            <button type="submit">검색</button>
         </form>
 
         <!-- 회원 목록 테이블 -->
-        <table class="table table-striped table-bordered">
-            <thead class="table-light">
+        <table>
+            <thead>
                 <tr>
                     <th>번호</th>
                     <th>아이디</th>
@@ -61,7 +184,7 @@
                 <c:forEach items="${pageResponse.list}" var="item" varStatus="status">
                     <tr>
                         <td>${pageResponse.totalCount - (status.count + (pageResponse.pageNo - 1) * pageResponse.size) + 1}</td>
-                        <td><a href="detail?userid=${item.userid}" class="text-decoration-none">${item.userid}</a></td>
+                        <td><a href="detail?userid=${item.userid}">${item.userid}</a></td>
                         <td>${item.name}</td>
                         <td>${item.age}</td>
                     </tr>
@@ -76,10 +199,9 @@
 
         <!-- 페이지 내비게이션 -->
         <c:import url="/resources/inc/pageNav.jsp"/>
-        
-        <br><br>
+
         <!-- 페이지 정보 -->
-        <div class="text-center mb-4">
+        <div class="page-info">
             <span>현재 페이지: ${pageResponse.pageNo} / ${pageResponse.totalPage}</span>
         </div>
 
@@ -89,7 +211,7 @@
             const searchValue = document.querySelector("#searchValue");
 
             size.addEventListener("change", e => {
-                location = "list?pageNo=1&size=" + size.value + "&searchValue=" + searchValue.value;	
+                location = "list?pageNo=1&size=" + size.value + "&searchValue=" + searchValue.value;    
             });
 
             function pageMove(pageNo) {
@@ -100,8 +222,5 @@
         </script>
     </div>
 
-    <!-- 부트스트랩 JS 및 Popper.js 추가 -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
