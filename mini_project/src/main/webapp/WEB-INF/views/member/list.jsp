@@ -49,6 +49,7 @@
                         <th>아이디</th>
                         <th>이름</th>
                         <th>나이</th>
+                        <th>잠금</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -60,6 +61,7 @@
                             </td>
                             <td>${item.name}</td>
                             <td>${item.age}</td>
+                            <td>${item.user_lock }</td>
                         </tr>
                     </c:forEach>
 

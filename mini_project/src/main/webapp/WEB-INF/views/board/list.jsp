@@ -24,7 +24,6 @@
             <input type="hidden" name="pageNo" id="pageNo" value="${pageResponse.pageNo}">
 
             <div class="col-md-2">
-                <label for="size" class="form-label">건수</label>
                 <select name="size" id="size" class="form-select">
                     <c:forTokens items="10,30,90,100" delims="," var="size">
                         <option value="${size}" ${pageResponse.size == size ? 'selected' : ''}>${size}</option>
@@ -33,13 +32,17 @@
             </div>
 
             <div class="col-md-6">
-                <label for="searchValue" class="form-label">검색어</label>
                 <input type="text" name="searchValue" id="searchValue" class="form-control" value="${param.searchValue}" placeholder="제목, 작성자 등">
             </div>
 
             <div class="col-md-2">
                 <label class="form-label d-block">&nbsp;</label>
                 <button type="submit" class="btn btn-primary w-100">검색</button>
+            </div>
+            <!-- 글쓰기 버튼 -->
+            <div class="col-md-2">
+                <label class="form-label d-block">&nbsp;</label>
+                <a href="registerForm" class="btn btn-success w-100">글쓰기</a> <!-- 링크를 registerForm으로 변경 -->
             </div>
         </form>
 
