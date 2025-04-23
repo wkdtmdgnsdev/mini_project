@@ -19,21 +19,22 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                <c:if test="${empty member}">
-                    <li class="nav-item">
-                        <a class="nav-link" href="member/loginForm">로그인</a>
-                    </li>
-                </c:if>
-                <c:if test="${empty member}">
-                    <li class="nav-item">
-                        <a class="nav-link" href="member/registerForm">회원가입</a>
-                    </li>
-                </c:if>
-                <c:if test="${not empty member}">
-                    <li class="nav-item">
-                        <a class="nav-link" href="member/detail?userid=${member.userid}">내 정보</a>
-                    </li>
-                 </c:if>
+                    <c:if test="${empty member}">
+                        <li class="nav-item">
+                            <a class="nav-link" href="member/loginForm">로그인</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="member/registerForm">회원가입</a>
+                        </li>
+                    </c:if>
+                    <c:if test="${not empty member}">
+                        <li class="nav-item">
+                            <a class="nav-link" href="member/detail?userid=${member.userid}">내 정보</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="member/logout">로그아웃</a>
+                        </li>
+                    </c:if>
                     <li class="nav-item">
                         <a class="nav-link" href="member/list">회원목록</a>
                     </li>
@@ -50,39 +51,46 @@
         <p class="lead">아래 메뉴를 통해 원하는 기능을 이용해보세요.</p>
 
         <div class="row justify-content-center mt-4">
-        <c:if test="${empty member}">
-            <div class="col-md-4">
-                <div class="card shadow-sm mb-4">
-                    <div class="card-body">
-                        <h5 class="card-title">🔐 로그인</h5>
-                        <p class="card-text">회원 로그인 페이지로 이동합니다.</p>
-                        <a href="member/loginForm" class="btn btn-primary">이동</a>
+            <c:if test="${empty member}">
+                <div class="col-md-4">
+                    <div class="card shadow-sm mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">🔐 로그인</h5>
+                            <p class="card-text">회원 로그인 페이지로 이동합니다.</p>
+                            <a href="member/loginForm" class="btn btn-primary">이동</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-     </c:if>
-        <c:if test="${empty member}">
-            <div class="col-md-4">
-                <div class="card shadow-sm mb-4">
-                    <div class="card-body">
-                        <h5 class="card-title">📝 회원가입</h5>
-                        <p class="card-text">새 계정을 만들어보세요.</p>
-                        <a href="member/registerForm" class="btn btn-success">이동</a>
+                <div class="col-md-4">
+                    <div class="card shadow-sm mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">📝 회원가입</h5>
+                            <p class="card-text">새 계정을 만들어보세요.</p>
+                            <a href="member/registerForm" class="btn btn-success">이동</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </c:if>
-        <c:if test="${not empty member}">
-            <div class="col-md-4">
-                <div class="card shadow-sm mb-4">
-                    <div class="card-body">
-                        <h5 class="card-title">👤 내 정보</h5>
-                        <p class="card-text">나의 회원 정보를 확인합니다.</p>
-                        <a href="member/detail?userid=${member.userid}" class="btn btn-info">이동</a>
+            </c:if>
+            <c:if test="${not empty member}">
+                <div class="col-md-4">
+                    <div class="card shadow-sm mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">👤 내 정보</h5>
+                            <p class="card-text">나의 회원 정보를 확인합니다.</p>
+                            <a href="member/detail?userid=${member.userid}" class="btn btn-info">이동</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </c:if>
+                <div class="col-md-4">
+                    <div class="card shadow-sm mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">🚪 로그아웃</h5>
+                            <p class="card-text">로그아웃하고 메인 페이지로 돌아갑니다.</p>
+                            <a href="member/logout" class="btn btn-danger">로그아웃</a>
+                        </div>
+                    </div>
+                </div>
+            </c:if>
             <div class="col-md-4">
                 <div class="card shadow-sm mb-4">
                     <div class="card-body">
