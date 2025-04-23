@@ -35,9 +35,11 @@
                             <a class="nav-link" href="member/logout">로그아웃</a>
                         </li>
                     </c:if>
+                 <c:if test="${isAdmin}">
                     <li class="nav-item">
                         <a class="nav-link" href="member/list">회원목록</a>
                     </li>
+                 </c:if>
                     <li class="nav-item">
                         <a class="nav-link" href="board/list">게시판</a>
                     </li>
@@ -91,6 +93,7 @@
                     </div>
                 </div>
             </c:if>
+         <c:if test="${isAdmin}">
             <div class="col-md-4">
                 <div class="card shadow-sm mb-4">
                     <div class="card-body">
@@ -100,6 +103,7 @@
                     </div>
                 </div>
             </div>
+         </c:if>
             <div class="col-md-4">
                 <div class="card shadow-sm mb-4">
                     <div class="card-body">
