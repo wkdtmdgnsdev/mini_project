@@ -84,18 +84,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- 페이지 이동 스크립트 -->
-    <script>
-        document.querySelector("#size").addEventListener("change", () => {
-            const form = document.querySelector("#searchForm");
-            form.pageNo.value = 1;
-            form.submit();
-        });
-
-        function pageMove(pageNo) {
-            const form = document.querySelector("#searchForm");
-            form.pageNo.value = pageNo;
-            form.submit();
-        }
-    </script>
+    <script src="${pageContext.request.contextPath}/resources/js/page.js"></script>
 </body>
 </html>
