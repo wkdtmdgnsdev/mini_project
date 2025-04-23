@@ -1,7 +1,6 @@
 package org.kosa.mini.member;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.kosa.mini.exception.LoginFailedException;
