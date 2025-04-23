@@ -11,6 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+<c:import url="/resources/inc/nav.jsp"/>
     <div class="container mt-5">
     <h2 class="text-center">로그인</h2>
     <div class="card">
@@ -34,7 +35,7 @@
                     <div id="errorMessage" class="text-danger text-center mx-3" style="display: none;"></div>
 
                     <!-- 회원가입 버튼: 오른쪽 끝 -->
-                    <a href="register.html" class="btn btn-primary">회원가입</a>
+                    <a href="registerForm" class="btn btn-primary">회원가입</a>
                 </div>
             </form>
         </div>

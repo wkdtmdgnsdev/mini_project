@@ -15,6 +15,7 @@
     </style>
 </head>
 <body>
+<c:import url="/resources/inc/nav.jsp"/>
     <div class="container">
         <h2>회원가입</h2>
         <form id="registerForm" method="post">
