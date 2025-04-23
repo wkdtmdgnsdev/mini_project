@@ -1,12 +1,18 @@
 package org.kosa.mini.board;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.kosa.mini.util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/board")
@@ -74,5 +80,16 @@ public class BoardController {
 		int result = boardService.delete(bno);
 		
 		return "redirect:/board/list";
+	}
+	
+	@PostMapping("passwdCheck")
+	@ResponseBody
+	public Map<String, Object> passwdCheck(@RequestBody Board board) {
+		Map<String, Object> result = new HashMap<String, Object>();
+		
+		boolean succ = boardService.passwdCheck(String.valueOf(board.getBno()), board.getPasswd());
+		result.put("succ", succ);
+		
+		return result;
 	}
 }

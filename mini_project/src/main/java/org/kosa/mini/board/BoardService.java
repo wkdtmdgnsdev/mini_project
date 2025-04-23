@@ -49,4 +49,15 @@ public class BoardService {
 		return result;
 	}
 
+	public boolean passwdCheck(String bno, String passwd) {
+		boolean result = false;
+		Board board = boardDAO.selectOne(bno);
+		
+		if(board.matchPasswd(passwd)) {
+			result = true;
+		}
+		
+		return result;
+	}
+
 }

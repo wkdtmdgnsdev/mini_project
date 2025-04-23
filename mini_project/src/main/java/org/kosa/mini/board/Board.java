@@ -11,4 +11,12 @@ public class Board {
 	private String passwd;// 게시물 비번 
 	private String reg_date;// 작성일 
 	private int view_count;// 보기 수 
+	
+	public boolean matchPasswd(String passwd) {
+		boolean result = false;
+		if(this.passwd.contentEquals(passwd)) {
+			result = true;
+		}
+		return result;
+	}
 }
