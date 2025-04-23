@@ -14,7 +14,7 @@
 <c:import url="/resources/inc/nav.jsp"/>
     <div class="container mt-5">
     <h2 class="text-center">로그인</h2>
-    <div class="card">
+      <div class="card mx-auto" style="max-width: 600px;">
         <div class="card-body">
             <form action="login" method="POST" id="loginForm">
                 <div class="mb-3">
