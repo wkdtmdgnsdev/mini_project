@@ -6,5 +6,6 @@ import org.apache.ibatis.annotations.Mapper;
 public interface QuizDAO {
 	
 	public int insertQuiz(Quiz quiz);
+	public Quiz selectRandomQuiz();
 	
 }

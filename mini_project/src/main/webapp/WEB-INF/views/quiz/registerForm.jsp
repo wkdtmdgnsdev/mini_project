@@ -40,8 +40,7 @@ document.getElementById("bulkForm").addEventListener("submit", function(e) {
         })
         .then(res => res.text())
         .then(msg => {
-            document.getElementById("result").innerHTML = `<div class="alert alert-success">${msg}</div>`;
-            document.getElementById("quizJson").value = "";
+            location.href = "/";
         })
         .catch(err => {
             document.getElementById("result").innerHTML = `<div class="alert alert-danger">등록 실패: ${err}</div>`;

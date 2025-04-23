@@ -12,4 +12,13 @@
 		)
 	</insert>
 
+	<select id="selectRandomQuiz" resultType="org.kosa.mini.quiz.Quiz">
+	SELECT * FROM (
+        SELECT 
+            *
+        FROM m_quiz
+        ORDER BY DBMS_RANDOM.VALUE
+    )
+    WHERE ROWNUM = 1
+	</select>
 </mapper>

@@ -1,5 +1,7 @@
 package org.kosa.mini.quiz;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -31,6 +33,23 @@ public class QuizService {
 	        quizDAO.insertQuiz(quiz); // MyBatis 등록
 	    }
 		
+		return result;
+	}
+
+	public  Map<String, Object> getRandomQuiz() {
+		Quiz quiz = quizDAO.selectRandomQuiz();
+		
+		List<String> options = new ArrayList<>();
+	    options.add(quiz.getOption1());
+	    options.add(quiz.getOption2());
+	    options.add(quiz.getOption3());
+	    options.add(quiz.getOption4());
+		
+	    Map<String, Object> result = new HashMap<>();
+	    result.put("question", quiz.getQuestion());
+	    result.put("options", options);
+	    result.put("answer", quiz.getAnswer());
+	    
 		return result;
 	}
 }

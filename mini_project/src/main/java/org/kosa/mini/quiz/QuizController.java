@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,5 +29,11 @@ public class QuizController {
 		int result = quizService.register(quizList);
 	   
 	    return "총 " + result + "개의 퀴즈가 등록되었습니다.";
+	}
+	
+	@GetMapping("/randomQuiz")
+	@ResponseBody
+	public Map<String, Object> getRandomQuiz() {
+		return quizService.getRandomQuiz();
 	}
 }
