@@ -155,7 +155,12 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/list")
-	public String list(Model model, String pageNo, String size, String searchValue) {
+	public String list(Model model, String pageNo, String size, String searchValue, HttpSession session) {
+		Boolean isAdmin = (Boolean)session.getAttribute("isAdmin");
+		if(isAdmin == null || !isAdmin) {
+			return "redirect:/";
+		}
+		
 		model.addAttribute("pageResponse", memberService.list(searchValue, Util.parseInt(pageNo, 1), Util.parseInt(size, 10)));
 		
 		return "member/list";

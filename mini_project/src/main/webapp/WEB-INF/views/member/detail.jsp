@@ -41,7 +41,9 @@
                     	<a href="/mini/member/unLock?userid=${member.userid}" class="btn btn-warning">잠금 해제</a>
                     </c:if>
                     <a href="/mini/member/delete" class="btn btn-danger">탈퇴</a>
+                 <c:if test="${isAdmin }">
                     <a href="/mini/member/list" class="btn btn-secondary">회원 목록으로</a>
+                 </c:if>
                 </div>
             </div>
         </div>
