@@ -13,6 +13,11 @@ passwordModal.addEventListener('show.bs.modal', function (event) {
     } else if (action === 'delete') {
         actionForm.action = 'delete';
     }
+    
+    // 비밀번호 입력창에 포커스
+    setTimeout(() => {
+        document.getElementById('password').focus();
+    }, 600);
 });
 
 // 확인 버튼 클릭 시
