@@ -44,21 +44,7 @@
         </form>
     </div>
 
-	<script type="text/javascript">
-		document.querySelector("#passwd").addEventListener("input", function () {
-		let passwdMessage = document.querySelector("#passwdMessage");
-		let passwd = this.value;
-		const passwdPattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]).{8,}$/;
-
-		if (!passwdPattern.test(passwd)) {
-			passwdMessage.textContent = "비밀번호는 영문자, 숫자, 특수문자를 포함해 최소 8자 이상이어야 합니다.";
-			passwdMessage.style.color = "red";
-		} else {
-			passwdMessage.textContent = "안전한 비밀번호입니다.";
-			passwdMessage.style.color = "green";
-		}
-	});
-	</script>
+	<script src="${pageContext.request.contextPath}/resources/js/passwdCheck.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>

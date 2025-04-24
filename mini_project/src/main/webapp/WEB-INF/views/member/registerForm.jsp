@@ -8,44 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원가입</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background-color: #f8f9fa;
-        }
-        .register-container {
-            max-width: 500px;
-            margin: 60px auto;
-            padding: 30px;
-            background-color: #ffffff;
-            border-radius: 15px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-        }
-        h2 {
-            text-align: center;
-            margin-bottom: 30px;
-            font-weight: bold;
-        }
-        .form-label {
-            font-weight: 500;
-        }
-        .form-text {
-            font-size: 0.875rem;
-            min-height: 20px;
-        }
-        #useridMessage {
-            color: #dc3545; /* Bootstrap 빨간색 */
-            min-height: 25px;
-        }
-        #passwdMessage {
-            color: #dc3545; /* Bootstrap 빨간색 */
-            min-height: 50px;
-        }
-        .btn-primary {
-            width: 100%;
-            padding: 10px;
-            font-size: 1.1rem;
-        }
-    </style>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/registerMember.css">
 </head>
 <body>
 <c:import url="/resources/inc/nav.jsp"/>
@@ -81,6 +44,7 @@
     </div>
 </div>
 
+<script src="${pageContext.request.contextPath}/resources/js/passwdCheck.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/memberRegister.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
