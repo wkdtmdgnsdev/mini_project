@@ -4,17 +4,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
-
 import org.kosa.mini.exception.LoginFailedException;
 import org.kosa.mini.exception.MemberLockedException;
 import org.kosa.mini.util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/member")
@@ -79,15 +81,21 @@ public class MemberController {
 	
 	@PostMapping("register")
 	@ResponseBody
-	public Map<String, Object> register(@RequestBody Member member) {
+	public Map<String, Object> register(@RequestBody @Valid Member member, BindingResult bindingResult) {
 		Map<String, Object> result = new HashMap<String, Object>();
-		//입력값 검증 
-		if (!member.isValid()) {
-			return setErrorResponse(result, "입력값 검증 오류가 발생 했습니다.");
-		} else {
-			memberService.register(member);
-			result.put("status", "ok");
-		}
+		
+		// 유효성 검사 오류가 있을 경우
+        if (bindingResult.hasErrors()) {
+            result.put("status", "error");
+            result.put("message", "입력값 검증 오류가 발생했습니다.");
+            result.put("errors", bindingResult.getAllErrors()); // 오류 목록 반환
+            return result;
+        }
+        
+        // 유효성 검사 통과 후 회원가입 처리
+        memberService.register(member);
+        result.put("status", "ok");
+        result.put("message", "회원 가입이 완료되었습니다.");
 		return result;
 	}
 	

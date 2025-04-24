@@ -19,7 +19,7 @@
         }
         
         .error-message {
-		  min-height: 20px; /* 항상 이 높이만큼 공간 차지 */
+		  min-height: 24px; /* 항상 이 높이만큼 공간 차지 */
 		  font-size: 0.9rem;
 		  color: red;
 		  transition: opacity 0.3s ease;

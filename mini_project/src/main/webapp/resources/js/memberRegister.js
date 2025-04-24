@@ -35,6 +35,7 @@ let registerForm = document.querySelector("#registerForm");
 								useridMessage.textContent = userid +` 아이디는 이미 사용 중입니다.`;
 								useridMessage.style.color = "red";
 								isUserIdValid = false;
+								this.focus();
 							} else {
 								useridMessage.textContent = userid +` 아이디는 사용 가능합니다.`;
 								useridMessage.style.color = "green";
@@ -74,7 +75,7 @@ let registerForm = document.querySelector("#registerForm");
 					.then(response => response.json())
 					.then(json => {
 						if (json.status == "error") {
-							alert(json.errorMessage);
+							alert(json.message);
 						} else {
 							location = "loginForm";
 						}

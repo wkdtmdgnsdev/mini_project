@@ -1,5 +1,12 @@
 package org.kosa.mini.member;
 
+
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,9 +17,20 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class Member {
+	@NotBlank(message = "아이디는 필수입니다.")
+	@Size(min = 8, message = "아이디는 최소 8자 이상이어야 합니다.")
 	private String userid;
+	
+	@NotBlank(message = "비밀번호는 필수입니다.")
+	@Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[!@#$%^&*(),.?\":{}|<>]).{8,}$", 
+     message = "비밀번호는 영문자, 숫자, 특수문자를 포함해 최소 8자 이상이어야 합니다.")
 	private String passwd;
+	
+	@NotBlank(message = "이름은 필수입니다.")
 	private String name;
+	
+	@Min(value = 1, message = "나이는 최소 1세 이상이어야 합니다.")
+	@Max(value = 150, message = "나이는 최대 150세까지 가능합니다.")
 	private int age;
 	private int login_fail;
 	private boolean user_lock;
@@ -60,11 +78,4 @@ public class Member {
 	public static Member join(String userid, String passwd, String name, int age) {
         return new Member(userid, passwd, name, age);
   }
-
-	public boolean isValid() {
-		if (userid == null || userid.length() == 0) return false;
-		if (passwd == null || passwd.length() == 0) return false;
-		if (name == null || name.length() == 0) return false;
-		return true;
-	}
 }
