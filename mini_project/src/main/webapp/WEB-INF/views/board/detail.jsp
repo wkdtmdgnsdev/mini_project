@@ -9,42 +9,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>게시물 상세보기</title>
 <!-- Bootstrap CSS -->
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
-	rel="stylesheet">
-<style>
-/* 모달 본문 영역 최소 높이 설정 */
-
-
-/* 에러 메시지 공간 고정 */
-#passwordError {
-    position: absolute;
-    bottom: 50px;  /* 메시지가 항상 모달 하단에 위치하도록 설정 */
-    left: 130px;
-    width: 100%;
-    text-align: left;
-    font-size: 14px;
-}
-	@keyframes shake {
-	    0% { transform: translateX(0); }
-	    25% { transform: translateX(-10px); }
-	    50% { transform: translateX(10px); }
-	    75% { transform: translateX(-10px); }
-	    100% { transform: translateX(0); }
-	}
-	
-	/* 모달을 흔들 때 적용할 클래스 */
-	.shake {
-	    animation: shake 0.5s ease-in-out;
-	}
-</style>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/detailBoard.css">
 </head>
 <body>
 	<c:import url="/resources/inc/nav.jsp" />
 	<div class="container mt-5">
 		<h2 class="text-center mb-4">📄 게시물 상세보기</h2>
 
-		<div class="card shadow-sm">
+		<div class="card shadow-sm" style="max-width: 700px">
 			<div class="card-header">
 				<h4>
 					게시물 제목: <span>${board.title}</span>

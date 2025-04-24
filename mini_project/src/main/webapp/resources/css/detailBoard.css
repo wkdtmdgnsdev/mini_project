@@ -1,0 +1,43 @@
+@charset "utf-8";
+<style>
+        /* 전체 페이지가 반응형 디자인을 따르도록 스타일 추가 */
+        .container {
+            max-width: 100%;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        .card {
+            max-width: 600px;  /* 카드의 최대 너비를 줄여줌 */
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* 회원 정보 수정, 탈퇴 버튼을 더 넓게 설정 */
+        .btn {
+            width: 100%;
+        }
+
+        /* 화면이 더 클 경우 카드와 버튼을 적절히 확장 */
+        @media (min-width: 768px) {
+            .card {
+                max-width: 700px;  /* 화면이 커지면 카드가 더 넓어짐 */
+            }
+
+            .d-grid gap-2 d-md-flex {
+                gap: 20px;
+                justify-content: flex-start;
+            }
+
+            .btn {
+                width: auto;  /* 큰 화면에서 버튼 너비 조정 */
+            }
+        }
+
+        /* 화면 크기가 너무 작을 때 (모바일 디바이스) 카드 및 버튼 크기 조정 */
+        @media (max-width: 576px) {
+            .btn {
+                width: 100%; /* 작은 화면에서는 버튼을 가득 채우도록 설정 */
+            }
+        }
+</style>

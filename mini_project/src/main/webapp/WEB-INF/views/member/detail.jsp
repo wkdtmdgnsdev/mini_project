@@ -9,6 +9,7 @@
     
     <!-- Bootstrap CSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/detailMember.css">
 </head>
 <body class="bg-light">
     <!-- Navigation Bar -->
@@ -37,13 +38,13 @@
                 
                 <div class="d-grid gap-2 d-md-flex justify-content-md-between">
                     <a href="/mini/member/updateForm" class="btn btn-primary">회원 정보 수정</a>
-                    <c:if test="${isAdmin }">
+                    <c:if test="${isAdmin && member.user_lock == true}">
                     	<a href="/mini/member/unLock?userid=${member.userid}" class="btn btn-warning">잠금 해제</a>
                     </c:if>
                     <a href="/mini/member/delete" class="btn btn-danger">탈퇴</a>
-                 <c:if test="${isAdmin }">
-                    <a href="/mini/member/list" class="btn btn-secondary">회원 목록으로</a>
-                 </c:if>
+                    <c:if test="${isAdmin }">
+                        <a href="/mini/member/list" class="btn btn-secondary">회원 목록으로</a>
+                    </c:if>
                 </div>
             </div>
         </div>

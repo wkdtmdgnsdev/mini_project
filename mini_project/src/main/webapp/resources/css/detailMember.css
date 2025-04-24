@@ -1,0 +1,70 @@
+@charset "utf-8";
+
+<style>
+    .container {
+        max-width: 100%;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .card {
+        max-width: 900px;  /* 카드의 최대 너비를 더 크게 설정 */
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    /* 모달 본문 영역 최소 높이 설정 */
+    .modal-content {
+        width: 100%;
+    }
+
+    /* 에러 메시지 공간 고정 */
+    #passwordError {
+        position: relative;  /* 절대 위치를 상대 위치로 변경하여 반응형 디자인 개선 */
+        margin-top: 10px;
+        font-size: 14px;
+    }
+
+    /* 화면이 작은 기기에서 카드 크기 설정 */
+    @media (max-width: 768px) {
+        .card {
+            max-width: 100%;
+            padding: 0 10px;
+        }
+    }
+
+    /* 화면이 큰 기기에서 카드 크기 증가 */
+    @media (min-width: 992px) {
+        .card {
+            max-width: 1000px;  /* 더 큰 화면에서 카드 크기 증가 */
+        }
+
+        /* 모달 크기 제한 */
+        .modal-dialog {
+            max-width: 600px;  /* 더 큰 화면에서 모달 크기 확장 */
+        }
+    }
+
+    /* 에러 메시지 공간 고정 */
+    #passwordError {
+        position: absolute;
+        bottom: 50px;  /* 메시지가 항상 모달 하단에 위치하도록 설정 */
+        left: 130px;
+        width: 100%;
+        text-align: left;
+        font-size: 14px;
+    }
+
+    @keyframes shake {
+        0% { transform: translateX(0); }
+        25% { transform: translateX(-10px); }
+        50% { transform: translateX(10px); }
+        75% { transform: translateX(-10px); }
+        100% { transform: translateX(0); }
+    }
+
+    /* 모달을 흔들 때 적용할 클래스 */
+    .shake {
+        animation: shake 0.5s ease-in-out;
+    }
+</style>
