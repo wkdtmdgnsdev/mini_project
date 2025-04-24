@@ -63,4 +63,19 @@ document.addEventListener("DOMContentLoaded", function () {
                 quizModal.show();
             });
     }
+
+    // 퀴즈 키보드 입력 처리
+    document.addEventListener('keydown', function (event) {
+        const pressedKey = event.key;
+
+        // 숫자 키 1~9 인 경우만 처리
+        if (/^[1-4]$/.test(pressedKey)) {
+            const optionButtons = document.querySelectorAll('.option-btn');
+            const index = parseInt(pressedKey) - 1; // 키보드는 1부터지만, 인덱스는 0부터
+
+            if (optionButtons.length > index) {
+                optionButtons[index].click();
+            }
+        }
+    });
 });
