@@ -9,8 +9,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>게시물 상세보기</title>
 <!-- Bootstrap CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/detailBoard.css">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/detailBoard.css">
 </head>
 <body>
 	<c:import url="/resources/inc/nav.jsp" />
@@ -74,8 +77,7 @@
 							<label for="password" class="form-label">비밀번호</label> <input
 								type="password" class="form-control" id="password"
 								name="password" required>
-							<div id="passwordError" class="text-danger mt-2"
-								style="display: none;"></div>
+							<div id="passwordError" class="text-danger mt-2 error-message"> </div>
 							<input type="hidden" id="bno" name="bno" value="${board.bno}">
 							<input type="hidden" id="action" name="action">
 						</div>

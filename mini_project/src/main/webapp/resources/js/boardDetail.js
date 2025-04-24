@@ -61,7 +61,7 @@ document.getElementById('confirmActionButton').addEventListener('click', functio
         } else {
             // 실패 시 메시지 출력 + 흔들기
             errorDiv.textContent = '비밀번호가 틀렸습니다.';
-            errorDiv.style.display = 'block';
+			errorDiv.classList.add('show');
 
             // 모달을 흔드는 애니메이션을 추가
             modalDialog.classList.add('shake');
@@ -79,8 +79,8 @@ document.getElementById('confirmActionButton').addEventListener('click', functio
 // 입력 시 에러 메시지 숨김
 document.getElementById('password').addEventListener('input', function () {
     const errorDiv = document.getElementById('passwordError');
-    errorDiv.style.display = 'none';
     errorDiv.textContent = '';
+	errorDiv.classList.remove('show');
 });
 
 document.getElementById('password').addEventListener('keydown', function (event) {

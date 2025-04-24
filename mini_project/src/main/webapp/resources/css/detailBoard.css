@@ -17,6 +17,18 @@
         .btn {
             width: 100%;
         }
+        
+        .error-message {
+		  min-height: 20px; /* 항상 이 높이만큼 공간 차지 */
+		  font-size: 0.9rem;
+		  color: red;
+		  transition: opacity 0.3s ease;
+		  opacity: 0;
+		}
+		
+		.error-message.show {
+		  opacity: 1;
+		}
 
         /* 화면이 더 클 경우 카드와 버튼을 적절히 확장 */
         @media (min-width: 768px) {
@@ -40,4 +52,17 @@
                 width: 100%; /* 작은 화면에서는 버튼을 가득 채우도록 설정 */
             }
         }
+        
+        @keyframes shake {
+			  0%   { transform: translateX(0); }
+			  20%  { transform: translateX(-8px); }
+			  40%  { transform: translateX(8px); }
+			  60%  { transform: translateX(-6px); }
+			  80%  { transform: translateX(6px); }
+			  100% { transform: translateX(0); }
+			}
+			
+			.shake {
+			  animation: shake 0.4s ease;
+			}
 </style>
