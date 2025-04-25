@@ -30,7 +30,8 @@
 	
 	<update id="unlockMemberByAdmin">
 		UPDATE M_MEMBER SET
-		USER_LOCK  = 0
+		USER_LOCK  = 0,
+		login_fail = 0
 		WHERE userid = #{userid}
 	</update>
 	
